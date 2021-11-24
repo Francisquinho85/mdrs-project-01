@@ -1,4 +1,4 @@
-function output = RunSimulator1(lambda,C,f,P,numIter)
+function  = RunSimulator1(lambda,C,f,P,numIter)
 
 PL = zeros(10,1);
 APD = zeros(10,1);
@@ -23,7 +23,7 @@ fprintf('Packet Loss (%%)       = %.2e +- %.2e\n',PLsum,confPL);
 fprintf('Av. Packet Delay (ms) = %.2e +- %.2e\n',APDsum,confAPD);
 fprintf('Max Packet Delay (ms) = %.2e +- %.2e\n',MPDsum,confMPD);
 fprintf('Throughput (Mbps)     = %.2e +- %.2e\n',TTsum,confTT);
-output = [PLsum,APDsum,MPDsum,TTsum,confPL,confAPD,confMPD,confTT];
+output = 
 end
 
 

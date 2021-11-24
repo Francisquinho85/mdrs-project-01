@@ -1,0 +1,19 @@
+%% 1a
+close all;
+clearvars;
+clc;
+
+lambda = (400:400:2000);
+C = 10;
+f = 1e6;
+P = 10000;
+numIter = 50;
+fprintf("\n1a) \n");
+AVGpacketDelay = zeros(1,5);
+AVGpacketE
+for i=1:5
+    fprintf("\n lambda = %d \n",lambda(i));
+    output = RunSimulator1(lambda(i),C,f,P,numIter);
+    AVGpacketDelay(i) = output(2);
+end
+
