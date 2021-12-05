@@ -94,7 +94,7 @@ eb.Color = [0 0 0];
 eb.LineStyle = 'none';
 hold off;
 
-%% 1.d
+%% 1d
 
 clearvars;
 

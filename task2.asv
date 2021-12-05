@@ -1,0 +1,91 @@
+%% 2a
+close all;
+clearvars;
+clc;
+
+lambda = 1500;
+C = 10;
+f = 1e6;
+P = 10000;
+n = (10:10:40);
+numIter = 50;
+fprintf("\n2a) \n");
+AVGpacketDelay = zeros(1,4);
+AVGpacketDelayVoip = zeros(1,4);
+AVGpacketDelayErr = zeros(1,4);
+AVGpacketDelayErrVoip = zeros(1,4);
+
+for i=1:4
+    fprintf("\n n = %d \n",n(i));
+    output = RunSimulator3(lambda,C,f,P,n(i),numIter);
+    AVGpacketDelay(i) = output(3);
+    AVGpacketDelayVoip(i) = output(4);
+    AVGpacketDelayErr(i) = output(10);
+    AVGpacketDelayErrVoip(i) = output(11); 
+end
+
+figure(1);
+bar(n,AVGpacketDelay);
+title("Avg Packet Delay 2a");
+hold on;
+eb = errorbar(n,AVGpacketDelay,AVGpacketDelayErr,AVGpacketDelayErr);
+eb.Color = [0 0 0];
+eb.LineStyle = 'none';
+hold off;
+
+figure(2);
+bar(n,AVGpacketDelayVoip);
+title("Avg Packet Delay Voip 2a");
+hold on;
+errb = errorbar(n,AVGpacketDelayVoip,AVGpacketDelayErrVoip,AVGpacketDelayErrVoip);
+errb.Color = [0 0 0];
+errb.LineStyle = 'none';
+hold off;
+
+%% 2b
+clearvars;
+
+lambda = 1500;
+C = 10;
+f = 1e6;
+P = 10000;
+n = (10:10:40);
+numIter = 50;
+fprintf("\n2b) \n");
+AVGpacketDelay = zeros(1,4);
+AVGpacketDelayVoip = zeros(1,4);
+AVGpacketDelayErr = zeros(1,4);
+AVGpacketDelayErrVoip = zeros(1,4);
+
+for i=1:4
+    fprintf("\n n = %d \n",n(i));
+    output = RunSimulator4(lambda,C,f,P,n(i),numIter);
+    AVGpacketDelay(i) = output(3);
+    AVGpacketDelayVoip(i) = output(4);
+    AVGpacketDelayErr(i) = output(10);
+    AVGpacketDelayErrVoip(i) = output(11); 
+end
+
+figure(3);
+bar(n,AVGpacketDelay);
+title("Avg Packet Delay 2b");
+hold on;
+eb = errorbar(n,AVGpacketDelay,AVGpacketDelayErr,AVGpacketDelayErr);
+eb.Color = [0 0 0];
+eb.LineStyle = 'none';
+hold off;
+
+figure(4);
+bar(n,AVGpacketDelayVoip);
+title("Avg Packet Delay Voip 2b");
+hold on;
+errb = errorbar(n,AVGpacketDelayVoip,AVGpacketDelayErrVoip,AVGpacketDelayErrVoip);
+errb.Color = [0 0 0];
+errb.LineStyle = 'none';
+hold off;
+
+%% 2c
+
+%% 2d
+
+%%22

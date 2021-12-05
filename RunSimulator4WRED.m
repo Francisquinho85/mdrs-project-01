@@ -1,4 +1,4 @@
-function output = RunSimulator4(lambda,C,f,P,n,numIter)
+function output = RunSimulator4WRED(lambda,C,f,P,n,numIter)
 
 PL = zeros(10,1);
 PLV = zeros(10,1);
@@ -10,7 +10,7 @@ TT = zeros(10,1);
 alfa = 0.1;
 
 for i = 1:numIter
-    [PL(i), PLV(i), APD(i), APDV(i), MPD(i), MPDV(i), TT(i)] = Simulator4(lambda,C,f,P,n);
+    [PL(i), PLV(i), APD(i), APDV(i), MPD(i), MPDV(i), TT(i)] = Simulator4WRED(lambda,C,f,P,n);
 end
 
 confPL   = norminv(1-alfa/2) * sqrt(var(PL)/numIter);
