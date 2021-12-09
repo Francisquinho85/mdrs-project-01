@@ -86,6 +86,55 @@ hold off;
 
 %% 2c
 
+clearvars;
+
+lambdaData = 1500;
+C = 10 * 1e6;
+n = (10:10:40);
+
+fprintf("\n2c) \n");
+
+avgPacketSizeData = 0;
+for j=64:1518     
+    if j==64
+        avgPacketSizeData = avgPacketSizeData + (64*0.19);
+    elseif j==110
+        avgPacketSizeData = avgPacketSizeData + (110*0.23);
+    elseif j==1518
+        avgPacketSizeData = avgPacketSizeData + (1518*0.17);
+    else
+        avgPacketSizeData = avgPacketSizeData + j*((1 - 0.19 - 0.23 - 0.17)/(1519-64-3));
+    end
+end
+
+miuData = C / (avgPacketSizeData*8);
+
+avgPacketSizeVoIP = 0;
+for j=110:130
+    avgPacketSizeVoIP = avgPacketSizeVoIP + j*(1/21);
+end
+
+miuVoIP = C / (avgPacketSizeVoIP*8);
+
+w = zeros(1,2);
+
+for i=1:4
+    lambdaVoIP = 50 * n(i);
+    esData = 1/miuData;
+    esVoIP = 1/miuVoIP;
+    es2Data = 2/(miuData^2);
+    es2VoIP = 2/(miuVoIP^2);
+    fprintf("\n n = %d \n",n(i));
+    roVoIP = lambdaVoIP * esVoIP;
+    roData = lambdaData * esData;
+    w(1) = ((((lambdaVoIP * es2VoIP) + (lambdaData * es2Data)) / (2 * (1 - roVoIP))) + esVoIP)*1e3;
+    w(2) = ((((lambdaVoIP * es2VoIP) + (lambdaData * es2Data)) / (2 * (1 - roVoIP) * (1 - roVoIP - roData))) + esData)*1e3;
+
+    
+    fprintf("\n wVoIP = %d \n",w(1));
+    fprintf("\n wData = %d \n",w(2));
+end
+
 %% 2d
 clearvars;
 
