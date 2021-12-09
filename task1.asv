@@ -147,7 +147,7 @@ AVGpacketDelay1518Err = zeros(1,4);
 
 for i=1:4
     fprintf("\n C = %d \n",C(i));
-    output = RunSimulator1e(lambda,C(i),f,P,numIter);
+    output = RunSimulator1e(lambda,C,f(i),P,numIter);
     AVGpacketDelay64(i) = output(1);
     AVGpacketDelay110(i) = output(2);
     AVGpacketDelay1518(i) = output(3);
@@ -157,28 +157,28 @@ for i=1:4
 end
 
 figure(1);
-bar(C,AVGpacketDelay64);
+bar(f,AVGpacketDelay64);
 title("Avg Packet Delay 64 1e");
 hold on;
-eb1 = errorbar(C,AVGpacketDelay64,AVGpacketDelay64Err,AVGpacketDelay64Err);
+eb1 = errorbar(f,AVGpacketDelay64,AVGpacketDelay64Err,AVGpacketDelay64Err);
 eb1.Color = [0 0 0];
 eb1.LineStyle = 'none';
 hold off;
 
 figure(2);
-bar(C,AVGpacketDelay110);
-title("Avg Packet Delay 110 1e");
+bar(f,AVGpacketLoss);
+title("Avg Packet Loss 1b");
 hold on;
-eb2 = errorbar(C,AVGpacketDelay110,AVGpacketDelay110Err,AVGpacketDelay110Err);
+eb2 = errorbar(f,AVGpacketLoss,AVGpacketLossErr,AVGpacketLossErr);
 eb2.Color = [0 0 0];
 eb2.LineStyle = 'none';
 hold off;
 
 figure(3);
-bar(C,AVGpacketDelay1518);
-title("Avg Packet Delay 1518 1e");
+bar(f,AVGpacketLoss);
+title("Avg Packet Loss 1b");
 hold on;
-eb3 = errorbar(C,AVGpacketDelay1518,AVGpacketDelay1518Err,AVGpacketDelay1518Err);
+eb3 = errorbar(f,AVGpacketLoss,AVGpacketLossErr,AVGpacketLossErr);
 eb3.Color = [0 0 0];
 eb3.LineStyle = 'none';
 hold off;
