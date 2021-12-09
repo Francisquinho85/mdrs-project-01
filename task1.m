@@ -100,7 +100,7 @@ clearvars;
 
 lambda = 1800;
 C = (10:10:40);
-
+fprintf("\n1d) \n");
 
 for i=1:4
     es = 0;

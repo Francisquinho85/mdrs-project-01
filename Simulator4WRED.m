@@ -69,7 +69,7 @@ while TRANSMITTEDPACKETS + TRANSMITTEDPACKETSVOIP < P     % Stopping criterium
                     STATE = 1;
                     EventList = [EventList; DEPARTURE, Clock + 8*PacketSize/(C*10^6), PacketSize, Clock, DATA];
                 else
-                    if QUEUEOCCUPATION + PacketSize <= f
+                    if QUEUEOCCUPATION + PacketSize <= 0.9 * f
                         QUEUE = [QUEUE;PacketSize , Clock, DATA];
                         QUEUEOCCUPATION = QUEUEOCCUPATION + PacketSize;
                     else
