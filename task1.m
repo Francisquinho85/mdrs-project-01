@@ -101,32 +101,32 @@ clearvars;
 lambda = 1800;
 C = (10:10:40);
 
-s = zeros(1,1518);
-es = zeros(1,4);
-es2 = zeros(1,4);
-w = zeros(1,4);
+
 for i=1:4
+    es = 0;
+    es2 = 0;
     fprintf("\n C = %d \n",C(i));
     for j=64:1518
-        s(j) = (j*8)/(C(i)*1e6);
-    end
-    for j=64:1518
+        s = (j*8)/(C(i)*1e6);
+        s2 = s^2;
         if j==64
-            es(i) = es(i) + (0.19 * s(j));
-            es2(i) = es2(i) + (0.19 * s(j)^2);
+            es = es + (0.19 * s);
+            es2 = es2 + (0.19 * s2);
         elseif j==110
-            es(i) = es(i) + (0.23 * s(j));
-            es2(i) = es2(i) + (0.23 * s(j)^2);
+            es = es + (0.23 * s);
+            es2 = es2 + (0.23 * s2);
         elseif j==1518
-            es(i) = es(i) + (0.17 * s(j));
-            es2(i) = es2(i) + (0.17 * s(j)^2);
+            es = es + (0.17 * s);
+            es2 = es2 + (0.17 * s2);
         else
-            es(i) = es(i) + (0.41/(1518-64) * s(j));
-            es2(i) = es2(i) + (0.41/(1518-64) * s(j)^2);
+            es = es + ((1 - 0.19 - 0.23 - 0.17)/(1518-64-3) * s);
+            es2 = es2 + ((1 - 0.19 - 0.23 - 0.17)/(1518-64-3) * s2);
         end
     end
-    w(i) = ((lambda * es2(i)) / (2 * (1 - lambda * es(i)) + es(i)))*1000;
-    fprintf("\n w = %d \n",w(i));
+    w = (((lambda * es2) / (2 * (1 - lambda * es))) + es) * 1e3;
+    fprintf("\n w = %d \n",w);
 end
+
+
 
 
